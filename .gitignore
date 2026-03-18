@@ -1,5 +1,8 @@
 node_modules/
 dist/
 .astro/
-.codex/
+.codex/*
+!.codex/skills/
+!.codex/skills/**
+.codex/napkin.md
 .DS_Store
