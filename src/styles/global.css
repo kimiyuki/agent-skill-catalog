@@ -113,6 +113,7 @@ a {
   height: 280px;
   border-radius: 50%;
   background: radial-gradient(circle, rgba(182, 81, 47, 0.22), transparent 70%);
+  pointer-events: none;
 }
 
 .hero-kicker,
