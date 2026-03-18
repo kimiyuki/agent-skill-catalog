@@ -31,6 +31,7 @@ export type CatalogItem = CatalogMetadata & {
   bodyHtml: string;
   sourceText: string;
   skillPath: string;
+  downloadHref: string;
   sourceHref: string;
   githubSkillDirUrl: string;
   githubSkillMdUrl: string;
@@ -243,6 +244,7 @@ export function loadCatalogItems() {
       bodyHtml: runtime.bodyHtml,
       sourceText: runtime.sourceText,
       skillPath: `skills/${slug}/SKILL.md`,
+      downloadHref: `/downloads/${slug}.zip`,
       sourceHref: `/source/${slug}.md`,
       githubSkillDirUrl: toGithubTreeUrl(`skills/${slug}`),
       githubSkillMdUrl: toGithubBlobUrl(`skills/${slug}/SKILL.md`),

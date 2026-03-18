@@ -6,9 +6,10 @@
     "prepare": "node scripts/setup-hooks.mjs",
     "check:secrets": "node scripts/check-secrets.mjs",
     "check:secrets:staged": "node scripts/check-secrets.mjs --staged",
+    "generate:skill-zips": "node scripts/generate-skill-zips.mjs",
     "validate": "tsx scripts/validate-skill-catalog.ts",
-    "dev": "astro dev",
-    "build": "npm run check:secrets && npm run validate && astro build",
+    "dev": "npm run generate:skill-zips && astro dev",
+    "build": "npm run check:secrets && npm run validate && npm run generate:skill-zips && astro build",
     "preview": "astro preview"
   },
   "keywords": [],
