@@ -1,0 +1,4 @@
+interface:
+  display_name: "Vitest JA Explainer"
+  short_description: "Explain Vitest tests and failures in clear Japanese"
+  default_prompt: "Use $vitest-ja-explainer to explain this Vitest output in Japanese with likely causes."

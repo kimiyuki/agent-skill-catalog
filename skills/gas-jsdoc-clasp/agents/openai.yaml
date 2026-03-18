@@ -1,0 +1,4 @@
+interface:
+  display_name: "GAS JSDoc+clasp"
+  short_description: "GASのJSDoc型注釈とclasp運用を整える指針"
+  default_prompt: "Use $gas-jsdoc-clasp to align JSDoc型付きGAS開発とclasp運用の方針を整理して。"

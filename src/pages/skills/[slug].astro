@@ -1,0 +1,80 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { getCatalogItem, loadCatalogItems } from "../../lib/catalog";
+
+export function getStaticPaths() {
+  return loadCatalogItems().map((item) => ({
+    params: { slug: item.slug },
+  }));
+}
+
+const { slug } = Astro.params;
+if (!slug) {
+  throw new Error("Missing skill slug.");
+}
+
+const item = getCatalogItem(slug);
+if (!item) {
+  throw new Error(`Unknown skill slug: ${slug}`);
+}
+---
+
+<BaseLayout title={`${item.title} | Agent Skill Catalog`} description={item.summary}>
+  <a class="back-link" href={import.meta.env.BASE_URL}>← Catalog top</a>
+
+  <section class="detail-hero">
+    <div class="detail-hero-top">
+      <span class="hero-kicker">{item.category}</span>
+      <div class="detail-pills">
+        <span class="pill"><strong>status</strong>{item.status}</span>
+        <span class="pill"><strong>risk</strong>{item.risk}</span>
+        <span class="pill"><strong>owner</strong>{item.owner}</span>
+        <span class="pill"><strong>audience</strong>{item.audience.join(", ")}</span>
+        <span class="pill"><strong>validated</strong>{item.lastValidated}</span>
+      </div>
+    </div>
+    <h1>{item.title}</h1>
+    <p>{item.summary}</p>
+  </section>
+
+  <div class="detail-wrap">
+    <section class="runtime-panel">
+      <div class="runtime-row">
+        <span class="runtime-label">Runtime Name</span>
+        <strong class="runtime-value">{item.runtimeName}</strong>
+      </div>
+      <div class="runtime-row">
+        <span class="runtime-label">Runtime Description</span>
+        <p class="runtime-description">{item.runtimeDescription}</p>
+      </div>
+    </section>
+
+    <section class="detail-files">
+      <h2>Source on GitHub</h2>
+      <p class="detail-files-note">
+        サイト上では読みやすく整理し、実体ファイルは GitHub の正本へ辿れるようにしています。
+      </p>
+      <div class="detail-links">
+        <a href={item.githubSkillDirUrl} target="_blank" rel="noreferrer">skills/{item.slug}/</a>
+        <a href={item.githubSkillMdUrl} target="_blank" rel="noreferrer">SKILL.md</a>
+        <a href={`${import.meta.env.BASE_URL}${item.sourceHref.replace(/^\//, "")}`}>raw preview</a>
+        <span class="meta-chip">
+          <span class="meta-label">featured</span>{item.featured ? "yes" : "no"}
+        </span>
+        <span class="meta-chip">
+          <span class="meta-label">tags</span>{item.tags.join(", ")}
+        </span>
+        <span class="meta-chip">
+          <span class="meta-label">scripts</span>{item.hasScripts ? "available" : "none"}
+        </span>
+        <span class="meta-chip">
+          <span class="meta-label">assets</span>{item.hasAssets ? "available" : "none"}
+        </span>
+      </div>
+    </section>
+
+    <section class="detail-body">
+      <Fragment set:html={item.bodyHtml} />
+    </section>
+  </div>
+</BaseLayout>

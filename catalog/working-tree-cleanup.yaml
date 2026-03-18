@@ -1,0 +1,16 @@
+title: Git Working Tree 整理
+summary: git working tree の差分を分類し、安全に commit・stash・保持の判断を進める整理用 skill。
+category: repository-ops
+tags:
+  - git
+  - working-tree
+  - workflow
+audience:
+  - developer
+owner: shirai
+status: active
+risk: review
+lastValidated: 2026-03-18
+featured: false
+order: 60
+

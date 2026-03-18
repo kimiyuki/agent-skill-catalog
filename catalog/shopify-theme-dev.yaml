@@ -1,0 +1,16 @@
+title: Shopify Theme Dev ローカル確認
+summary: shopify theme dev の起動、ログ監視、localhost の確認までを一連で進める Shopify テーマ開発用 skill。
+category: shopify
+tags:
+  - shopify
+  - theme
+  - dev-server
+audience:
+  - developer
+owner: shirai
+status: active
+risk: review
+lastValidated: 2026-03-18
+featured: false
+order: 40
+

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shopify Theme Dev"
+  short_description: "Run and validate local shopify theme dev workflows"
+  default_prompt: "Use $shopify-theme-dev to run theme dev, monitor logs, and verify local preview routes."

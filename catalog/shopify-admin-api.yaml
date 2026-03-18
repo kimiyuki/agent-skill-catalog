@@ -1,0 +1,17 @@
+title: Shopify Admin API 設計ガイド
+summary: Shopify Admin API 実装で GraphQL を優先し、公式 docs 確認と典型的な落とし穴回避を支援する。
+category: shopify
+tags:
+  - shopify
+  - admin-api
+  - graphql
+  - rest
+audience:
+  - developer
+owner: shirai
+status: active
+risk: review
+lastValidated: 2026-03-18
+featured: true
+order: 30
+

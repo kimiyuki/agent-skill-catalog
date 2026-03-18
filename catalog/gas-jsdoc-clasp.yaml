@@ -1,0 +1,16 @@
+title: GAS JSDoc + clasp 運用ガイド
+summary: JSDoc と // @ts-check を前提に、clasp ベースの GAS 開発構成と運用方針を整理する skill。
+category: google-apps-script
+tags:
+  - gas
+  - jsdoc
+  - clasp
+audience:
+  - developer
+owner: shirai
+status: active
+risk: review
+lastValidated: 2026-03-18
+featured: true
+order: 10
+

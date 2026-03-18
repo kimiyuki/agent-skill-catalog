@@ -1,0 +1,14 @@
+title: サイト表示用タイトル
+summary: サイトカードに収まる 100 文字以内の要約。
+category: repository-ops
+tags:
+  - workflow
+audience:
+  - developer
+owner: shirai
+status: active
+risk: safe
+lastValidated: 2026-03-18
+featured: false
+order: 100
+

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Shopify Admin API"
+  short_description: "Build Shopify Admin API integrations with safer patterns"
+  default_prompt: "Use $shopify-admin-api to design this Admin API workflow with GraphQL-first guidance."

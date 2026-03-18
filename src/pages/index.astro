@@ -1,0 +1,163 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { loadCatalogItems } from "../lib/catalog";
+import { RISK_VALUES, STATUS_VALUES } from "../lib/catalog-schema";
+
+const items = loadCatalogItems();
+const categories = Array.from(new Set(items.map((item) => item.category))).sort();
+const totalTags = new Set(items.flatMap((item) => item.tags)).size;
+---
+
+<BaseLayout
+  title="Agent Skill Catalog"
+  description="Repository-backed static catalog for browsing and filtering Codex skills."
+>
+  <section class="hero">
+    <div class="hero-topline">
+      <span class="hero-kicker">Public Catalog / Static Pages</span>
+      <div class="hero-stats">
+        <div>
+          <strong>{items.length}</strong>
+          <span>skills</span>
+        </div>
+        <div>
+          <strong>{categories.length}</strong>
+          <span>categories</span>
+        </div>
+        <div>
+          <strong>{totalTags}</strong>
+          <span>tag vocabulary</span>
+        </div>
+      </div>
+    </div>
+    <h1>Agent Skill Catalog</h1>
+    <p>
+      repository-backed な skill 一覧を、検索と絞り込み中心で素早く見渡せる実用カタログ。
+    </p>
+    <p class="hero-note">
+      `SKILL.md` を正本にしつつ、サイト表示用の `catalog` metadata で一覧性を整える構成です。
+    </p>
+  </section>
+
+  <section class="filters" aria-label="Filters">
+    <div class="filters-grid">
+      <label>
+        Search
+        <input
+          id="search-input"
+          type="search"
+          placeholder="title, summary, runtime name, slug, tag..."
+        />
+      </label>
+      <label>
+        Category
+        <select id="category-filter">
+          <option value="">All</option>
+          {categories.map((category) => <option value={category}>{category}</option>)}
+        </select>
+      </label>
+      <label>
+        Status
+        <select id="status-filter">
+          <option value="">All</option>
+          {STATUS_VALUES.map((status) => <option value={status}>{status}</option>)}
+        </select>
+      </label>
+      <label>
+        Risk
+        <select id="risk-filter">
+          <option value="">All</option>
+          {RISK_VALUES.map((risk) => <option value={risk}>{risk}</option>)}
+        </select>
+      </label>
+    </div>
+    <p class="result-summary"><span id="visible-count">{items.length}</span> 件を表示中</p>
+  </section>
+
+  <section class="catalog-grid" id="catalog-grid">
+    {items.map((item) => {
+      const searchable = [
+        item.title,
+        item.summary,
+        item.runtimeName,
+        item.slug,
+        item.category,
+        item.owner,
+        ...item.tags,
+      ]
+        .join(" ")
+        .toLowerCase();
+
+      return (
+        <a
+          class="catalog-card"
+          href={`${import.meta.env.BASE_URL}skills/${item.slug}/`}
+          data-searchable={searchable}
+          data-category={item.category}
+          data-status={item.status}
+          data-risk={item.risk}
+        >
+          <div class="card-header">
+            <div>
+              <span class="meta-kicker">{item.category}</span>
+              <h2 class="card-title">{item.title}</h2>
+            </div>
+            <span class="pill"><strong>{item.status}</strong></span>
+          </div>
+          <p class="card-summary">{item.summary}</p>
+          <div class="tag-list">
+            {item.tags.map((tag) => (
+              <span class="tag">#{tag}</span>
+            ))}
+          </div>
+          <div class="meta-line">
+            <span class="meta-chip"><span class="meta-label">owner</span>{item.owner}</span>
+            <span class="meta-chip"><span class="meta-label">risk</span>{item.risk}</span>
+            <span class="meta-chip"><span class="meta-label">validated</span>{item.lastValidated}</span>
+          </div>
+        </a>
+      );
+    })}
+  </section>
+
+  <section class="empty-state" id="empty-state" hidden>
+    <p>条件に一致する skill は見つかりませんでした。検索語やフィルタを少し広げてみてください。</p>
+  </section>
+
+  <script>
+    const searchInput = document.querySelector("#search-input");
+    const categoryFilter = document.querySelector("#category-filter");
+    const statusFilter = document.querySelector("#status-filter");
+    const riskFilter = document.querySelector("#risk-filter");
+    const cards = Array.from(document.querySelectorAll(".catalog-card"));
+    const visibleCount = document.querySelector("#visible-count");
+    const emptyState = document.querySelector("#empty-state");
+
+    const update = () => {
+      const search = String(searchInput?.value || "").trim().toLowerCase();
+      const category = String(categoryFilter?.value || "");
+      const status = String(statusFilter?.value || "");
+      const risk = String(riskFilter?.value || "");
+
+      let count = 0;
+
+      cards.forEach((card) => {
+        const matchesSearch = !search || card.dataset.searchable?.includes(search);
+        const matchesCategory = !category || card.dataset.category === category;
+        const matchesStatus = !status || card.dataset.status === status;
+        const matchesRisk = !risk || card.dataset.risk === risk;
+        const visible = matchesSearch && matchesCategory && matchesStatus && matchesRisk;
+        card.hidden = !visible;
+        if (visible) count += 1;
+      });
+
+      if (visibleCount) visibleCount.textContent = String(count);
+      if (emptyState) emptyState.hidden = count !== 0;
+    };
+
+    [searchInput, categoryFilter, statusFilter, riskFilter].forEach((node) => {
+      node?.addEventListener("input", update);
+      node?.addEventListener("change", update);
+    });
+  </script>
+</BaseLayout>

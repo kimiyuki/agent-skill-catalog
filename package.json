@@ -1,0 +1,30 @@
+{
+  "name": "agent-skill-catalog",
+  "version": "1.0.0",
+  "description": "Static catalog for agent skills stored in this repository.",
+  "scripts": {
+    "prepare": "node scripts/setup-hooks.mjs",
+    "check:secrets": "node scripts/check-secrets.mjs",
+    "check:secrets:staged": "node scripts/check-secrets.mjs --staged",
+    "validate": "tsx scripts/validate-skill-catalog.ts",
+    "dev": "astro dev",
+    "build": "npm run check:secrets && npm run validate && astro build",
+    "preview": "astro preview"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "devDependencies": {
+    "@types/node": "^25.5.0",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "astro": "^6.0.5",
+    "gray-matter": "^4.0.3",
+    "js-yaml": "^4.1.1",
+    "marked": "^17.0.4",
+    "zod": "^4.3.6"
+  }
+}

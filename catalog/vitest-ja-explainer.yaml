@@ -1,0 +1,15 @@
+title: Vitest 日本語テスト解説
+summary: Vitest の結果とテストコードを読み、何を保証しているかを日本語で説明する skill。
+category: testing
+tags:
+  - vitest
+  - test-explanation
+audience:
+  - developer
+owner: shirai
+status: active
+risk: safe
+lastValidated: 2026-03-18
+featured: false
+order: 50
+
