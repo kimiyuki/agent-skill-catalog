@@ -1,0 +1,14 @@
+title: 公開サイト 404 チェック
+summary: 公開中の catalog を CDP と curl で巡回し、主要ページや GitHub 導線の 404 を確認する skill。
+category: repository-ops
+tags:
+  - workflow
+audience:
+  - developer
+  - pm
+owner: shirai
+status: active
+risk: safe
+lastValidated: 2026-03-18
+featured: false
+order: 70
