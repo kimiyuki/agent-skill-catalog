@@ -3,6 +3,8 @@ dist/
 .astro/
 .codex/*
 !.codex/skills/
-!.codex/skills/**
+.codex/skills/*
+!.codex/skills/agent-skill-catalog-site-check/
+!.codex/skills/agent-skill-catalog-site-check/**
 .codex/napkin.md
 .DS_Store
