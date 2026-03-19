@@ -140,6 +140,7 @@ npm run build
 - credential 混入チェックも必須にする
 - Pages への deploy は `main` への push 時のみ行う
 - PR 時点では「公開前の検証」に留める
+- `.codex/napkin.md` は Git 管理対象として扱い、関連する気づきの更新は本体変更と同じコミットに含めてよい。毎回必須ではないが、セットで更新される運用を基本にする
 
 ## GitHub Pages 運用
 GitHub Pages の公開元は `GitHub Actions` を使う。
