@@ -105,9 +105,9 @@ const categories = Array.from(new Set(items.map((item) => item.category))).sort(
             ))}
           </div>
           <div class="meta-line">
-            <span class="meta-chip"><span class="meta-label">owner</span>{item.owner}</span>
-            <span class="meta-chip"><span class="meta-label">risk</span>{item.risk}</span>
-            <span class="meta-chip"><span class="meta-label">validated</span>{item.lastValidated}</span>
+            <span class="meta-chip">{item.owner}</span>
+            <span class="meta-chip">{item.risk}</span>
+            <span class="meta-chip">{item.lastValidated}</span>
           </div>
         </a>
       );

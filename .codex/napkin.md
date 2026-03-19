@@ -23,6 +23,7 @@
 - 一覧トップの独立した上部帯は、一覧性を下げるなら削ってよい。ブランド表示は overview 内に吸収してよい。
 - UI は装飾より実用性を優先し、overview や toolbar は「一覧へ早く入るための薄い導線」として扱いたい。
 - 一覧トップでは `catalog-brand` や `catalog-kicker` のような補助要素も、一覧面積を圧迫するなら削ってよい。
+- 一覧カードでは tag は 1 行に抑え、owner/risk/validated はラベルを省いて値だけ見せ、そのぶん description を 3 行まで使いたい。
 - 個別 skill ページは runtime name / runtime description を縦 2 段で見せ、他のメタ情報は header 側へ寄せたい。
 
 ## Patterns That Work

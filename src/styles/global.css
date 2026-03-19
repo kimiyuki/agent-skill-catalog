@@ -403,7 +403,7 @@ a {
   margin: 0;
   color: var(--muted);
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 2;
+  -webkit-line-clamp: 3;
 }
 
 .meta-line,
@@ -416,9 +416,10 @@ a {
 }
 
 .tag-list {
-  max-height: 76px;
+  flex-wrap: nowrap;
+  gap: 8px;
+  max-height: 38px;
   overflow: hidden;
-  align-content: flex-start;
 }
 
 .pill,
@@ -432,6 +433,10 @@ a {
   background: var(--tag);
   color: var(--text);
   font-size: 0.82rem;
+}
+
+.tag {
+  flex: 0 0 auto;
 }
 
 .meta-chip strong,
