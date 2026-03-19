@@ -248,6 +248,10 @@ a {
   transition: transform 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
 }
 
+.catalog-card[hidden] {
+  display: none;
+}
+
 .catalog-card:hover {
   transform: translateY(-4px);
   border-color: rgba(182, 81, 47, 0.28);
