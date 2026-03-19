@@ -235,6 +235,29 @@ a {
   padding: 4px 2px 0;
 }
 
+.catalog-brand {
+  display: inline-flex;
+  width: fit-content;
+  gap: 12px;
+  align-items: center;
+  text-decoration: none;
+}
+
+.catalog-brand .brand-mark {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  font-size: 0.92rem;
+}
+
+.catalog-brand .brand-copy strong {
+  font-size: 0.98rem;
+}
+
+.catalog-brand .brand-copy small {
+  font-size: 0.76rem;
+}
+
 .catalog-kicker {
   display: inline-flex;
   width: fit-content;
@@ -579,6 +602,10 @@ a {
   }
 
   .catalog-overview {
+    gap: 10px;
+  }
+
+  .catalog-brand {
     gap: 10px;
   }
 

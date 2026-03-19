@@ -4,6 +4,7 @@ import "../styles/global.css";
 const {
   title = "Agent Skill Catalog",
   description = "Repository-backed static catalog for Codex skills.",
+  showHeader = true,
 } = Astro.props;
 ---
 
@@ -18,15 +19,19 @@ const {
   </head>
   <body>
     <div class="page-shell">
-      <header class="site-header">
-        <a class="brand" href={import.meta.env.BASE_URL}>
-          <span class="brand-mark">ASC</span>
-          <span class="brand-copy">
-            <strong>Agent Skill Catalog</strong>
-            <small>Repository-backed skill index</small>
-          </span>
-        </a>
-      </header>
+      {
+        showHeader && (
+          <header class="site-header">
+            <a class="brand" href={import.meta.env.BASE_URL}>
+              <span class="brand-mark">ASC</span>
+              <span class="brand-copy">
+                <strong>Agent Skill Catalog</strong>
+                <small>Repository-backed skill index</small>
+              </span>
+            </a>
+          </header>
+        )
+      }
       <main class="site-main">
         <slot />
       </main>
