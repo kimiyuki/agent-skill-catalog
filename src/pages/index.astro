@@ -5,73 +5,67 @@ import { RISK_VALUES, STATUS_VALUES } from "../lib/catalog-schema";
 
 const items = loadCatalogItems();
 const categories = Array.from(new Set(items.map((item) => item.category))).sort();
-const totalTags = new Set(items.flatMap((item) => item.tags)).size;
 ---
 
 <BaseLayout
   title="Agent Skill Catalog"
   description="Repository-backed static catalog for browsing and filtering Codex skills."
 >
-  <section class="hero">
-    <div class="hero-topline">
-      <span class="hero-kicker">Public Catalog / Static Pages</span>
-      <div class="hero-stats">
-        <div>
+  <section class="catalog-overview" aria-label="Catalog overview">
+    <span class="catalog-kicker">Repository-backed skill index</span>
+    <div class="catalog-overview-head">
+      <h1>Agent Skill Catalog</h1>
+      <p class="catalog-overview-meta" aria-label="Catalog stats">
+        <span class="catalog-overview-metric">
           <strong>{items.length}</strong>
           <span>skills</span>
-        </div>
-        <div>
+        </span>
+        <span class="catalog-overview-divider" aria-hidden="true"></span>
+        <span class="catalog-overview-metric">
           <strong>{categories.length}</strong>
           <span>categories</span>
-        </div>
-        <div>
-          <strong>{totalTags}</strong>
-          <span>tag vocabulary</span>
-        </div>
-      </div>
+        </span>
+      </p>
     </div>
-    <h1>Agent Skill Catalog</h1>
-    <p>
-      repository-backed な skill 一覧を、検索と絞り込み中心で素早く見渡せる実用カタログ。
-    </p>
-    <p class="hero-note">
-      `SKILL.md` を正本にしつつ、サイト表示用の `catalog` metadata で一覧性を整える構成です。
-    </p>
+    <p class="catalog-overview-description">必要な skill を、検索と絞り込みですぐ見つけられる実用カタログ。</p>
   </section>
 
-  <section class="filters" aria-label="Filters">
-    <div class="filters-grid">
-      <label>
-        Search
-        <input
-          id="search-input"
-          type="search"
-          placeholder="title, summary, runtime name, slug, tag..."
-        />
-      </label>
-      <label>
-        Category
-        <select id="category-filter">
-          <option value="">All</option>
-          {categories.map((category) => <option value={category}>{category}</option>)}
-        </select>
-      </label>
-      <label>
-        Status
-        <select id="status-filter">
-          <option value="">All</option>
-          {STATUS_VALUES.map((status) => <option value={status}>{status}</option>)}
-        </select>
-      </label>
-      <label>
-        Risk
-        <select id="risk-filter">
-          <option value="">All</option>
-          {RISK_VALUES.map((risk) => <option value={risk}>{risk}</option>)}
-        </select>
-      </label>
-    </div>
-    <p class="result-summary"><span id="visible-count">{items.length}</span> 件を表示中</p>
+  <section class="catalog-toolbar" aria-label="Filters">
+    <label class="toolbar-search">
+      Search
+      <input
+        id="search-input"
+        type="search"
+        placeholder="title, summary, runtime name, slug, tag..."
+      />
+    </label>
+    <label>
+      Category
+      <select id="category-filter">
+        <option value="">All</option>
+        {categories.map((category) => <option value={category}>{category}</option>)}
+      </select>
+    </label>
+    <label>
+      Status
+      <select id="status-filter">
+        <option value="">All</option>
+        {STATUS_VALUES.map((status) => <option value={status}>{status}</option>)}
+      </select>
+    </label>
+    <label>
+      Risk
+      <select id="risk-filter">
+        <option value="">All</option>
+        {RISK_VALUES.map((risk) => <option value={risk}>{risk}</option>)}
+      </select>
+    </label>
+    <p class="toolbar-results" aria-live="polite">
+      <strong id="visible-count">{items.length}</strong>
+      <span>/</span>
+      <span id="total-count">{items.length}</span>
+      <span>skills</span>
+    </p>
   </section>
 
   <section class="catalog-grid" id="catalog-grid">
